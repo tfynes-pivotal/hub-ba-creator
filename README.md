@@ -1,7 +1,7 @@
 # hub-ba-creator<img width="973" height="768" alt="image" src="https://github.com/user-attachments/assets/b8dd3004-2450-4b31-b581-90713f87582b" />
 
 
-Hub business application auto-generator
+#Hub business application auto-generator
 
 Uses direct hub graphql interface to probe for all spaces that contain a substring ad-xxxxxxxx (where x is a numeric)
 
