@@ -28,6 +28,9 @@ cd pandas
 pip install ./*.whl
 
 ## Getting started
+
+### update 1.getSpacesAndPbas.py (line 104) and curl-hub.sh (line 74) with URL for your Hub
+
 ### Grab hub-api oauth token 
 <img width="442" height="386" alt="image" src="https://github.com/user-attachments/assets/f11f6e87-23e6-4dad-b0f0-a686dd883c40" />
 'copy raw token'
