@@ -5,6 +5,11 @@ import io
 import sys
 import subprocess
 
+def getAdNameById(ad_id: str) -> str:
+    return ad_map.get(ad_id)
+
+
+
 def parse_csv_and_iterate(file_path):
     """
     Reads a two-column CSV, checks for duplicates in the first column,
@@ -67,9 +72,11 @@ def parse_csv_and_iterate(file_path):
         print(f"\nProcessing space: **{spaceName}**")
         print(f"  Found {len(pba_list)} associated 'pba' value(s).")
 
-
+        print(f"\nEnriching {spaceName} to be an APM-Name")
+        print(f"\n {spaceName} ", getAdNameById(spaceName))
         print("calling CURL")
-        command = ["./curl-hub.sh", spaceName] + pba_list
+        command = ["./curl-hub.sh", getAdNameById(spaceName)] + pba_list
+        #command = ["./curl-hub.sh", spaceName] + pba_list
         result = subprocess.run(command, capture_output=True, text=True, check=True)
         #print("Return code:" , result.returncode)
         print("Stdout:", result.stdout)
@@ -96,5 +103,7 @@ def parse_csv_and_iterate(file_path):
     print("-" * 30)
     print("Iteration complete.")
 
-    
+
+df = pd.read_csv('./ad-id2name.csv', index_col='ad_Id') 
+ad_map = df['ad_Name'].to_dict()   
 parse_csv_and_iterate(sys.argv[1])
