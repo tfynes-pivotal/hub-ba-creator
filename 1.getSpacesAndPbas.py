@@ -10,11 +10,11 @@ from typing import Dict, Any
 HUB_URL = "https://hub.homelab1.fynesy.com"
 
 def is_apm_space(text):
-    return bool(re.search(r'ad-\d{8}', text))
+    return bool(re.search(r'ad\d{8}', text))
 
 def get_apm_id(text):
-    """Extract the ad-XXXXXXXX pattern if it exists, otherwise return None."""
-    match = re.search(r'ad-\d{8}', text)
+    """Extract the adXXXXXXXX pattern if it exists, otherwise return None."""
+    match = re.search(r'ad\d{8}', text)
     return match.group(0) if match else None
 
 def execute_graphql_pipeline(curl_command_string: str, jq_filter: str) -> str:

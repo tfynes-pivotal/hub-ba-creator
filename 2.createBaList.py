@@ -6,7 +6,7 @@ import sys
 import subprocess
 
 def getAdNameById(ad_id: str) -> str:
-    return ad_map.get(ad_id)
+    return ad_map.get(ad_id, ad_id)
 
 
 
