@@ -1,6 +1,8 @@
 #!/bin/bash
 echo curl hub $@
 
+HUB_URL='https://hub.homelab1.fynesy.com'
+
 entityName="$1"
 echo entityName=$entityName
 pbas=("${@:2}")
@@ -71,7 +73,7 @@ echo "query=$query"
 #echo "query_formatted=$query_formatted"
 #echo
 
-curl 'https://hub.homelab1.fynesy.com/hub/graphql' -H "Authorization: Bearer $htoken" -H 'Accept-Encoding: gzip, deflate, br' -H 'Content-Type: application/json' -H 'Accept: application/json' -H 'Connection: keep-alive' -H 'Origin: altair://-'  --data-binary "$query"  --compressed
+curl "$HUB_URL/hub/graphql" -H "Authorization: Bearer $htoken" -H 'Accept-Encoding: gzip, deflate, br' -H 'Content-Type: application/json' -H 'Accept: application/json' -H 'Connection: keep-alive' -H 'Origin: altair://-'  --data-binary "$query"  --compressed
 
 
 echo

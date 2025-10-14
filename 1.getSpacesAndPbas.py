@@ -7,6 +7,8 @@ import re
 import shlex # Import shlex for safe command string manipulation
 from typing import Dict, Any
 
+HUB_URL = "https://hub.homelab1.fynesy.com"
+
 def is_apm_space(text):
     return bool(re.search(r'ad-\d{8}', text))
 
@@ -100,8 +102,8 @@ else:
 
 # 1. Define the BASE curl command provided by the user (Altair client)
 # NOTE: This is the user's specific curl command string.
-CURL_BASE_COMMAND = """
-curl 'https://hub.homelab1.fynesy.com/hub/graphql?query=query%7BentityQuery%7BqueryEntities(entityType%3A%22Tanzu.TAS.Space%22%2Cfirst%3A10000)%7Bentities%7BentityId%20entityName%20entitiesIn(entityType%3A%22Tanzu.Hub.PotentialBusinessApplication%22)%7Bentities%7BentityId%20entityName%20properties%7Bname%20value%7D%7D%7DentitiesOut(entityType%3A%22Tanzu.TAS.Organization%22)%7Bentities%7BentityId%20entityName%7D%7D%7D%7D%7D%7D&variables=%7B%7D' -H 'Accept-Encoding: gzip, deflate, br' -H 'Content-Type: application/json' -H 'Accept: application/json' -H 'Connection: keep-alive' -H 'Origin: altair://-' --compressed
+CURL_BASE_COMMAND = f"""
+curl '{HUB_URL}/hub/graphql?query=query%7BentityQuery%7BqueryEntities(entityType%3A%22Tanzu.TAS.Space%22%2Cfirst%3A10000)%7Bentities%7BentityId%20entityName%20entitiesIn(entityType%3A%22Tanzu.Hub.PotentialBusinessApplication%22)%7Bentities%7BentityId%20entityName%20properties%7Bname%20value%7D%7D%7DentitiesOut(entityType%3A%22Tanzu.TAS.Organization%22)%7Bentities%7BentityId%20entityName%7D%7D%7D%7D%7D%7D&variables=%7B%7D' -H 'Accept-Encoding: gzip, deflate, br' -H 'Content-Type: application/json' -H 'Accept: application/json' -H 'Connection: keep-alive' -H 'Origin: altair://-' --compressed
 """.strip()
 
 # 2. Define the new Authorization header string
