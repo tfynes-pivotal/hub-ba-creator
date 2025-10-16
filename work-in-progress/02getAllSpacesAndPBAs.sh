@@ -1,0 +1,4 @@
+echo "SpaceName,PbaName" > ./spaces_with_pbas.csv
+./01.getAllSpaces.sh | jq -r '.data.entityQuery.queryEntities.entities[] | [.entityName,.entitiesIn.entities[0].entityId] | join(",")' | grep -E 'ad[0-9]{8}' | awk -F, -v OFS=, '{gsub(/^[[:space:]]+|[[:space:]]+$/, "", $1); if (match($1,/ad[0-9]{8}/)) { $1=substr($1, RSTART, RLENGTH);}}{ print }' >> ./spaces_with_pbas.csv
+#./01.getAllSpaces.sh | jq -r '.data.entityQuery.queryEntities.entities[] | [.entityName,.entitiesIn.entities[0].entityId] | join(",")' | grep -E 'ad[0-9]{8}' >> ./spaces_with_pbas.csv
+#./01.getAllSpaces.sh | jq -r '"SpaceName,PbaName",(.data.entityQuery.queryEntities.entities[] | [.entityName, .entitiesIn.entities[0].entityId] | @csv)' > ./spaces_with_pbas.csv
