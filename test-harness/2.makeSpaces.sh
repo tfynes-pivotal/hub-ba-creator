@@ -4,7 +4,7 @@ apm_format() {
 	printf "ad%08d" "$1"
 }
 
-cf create-org -o spacestest
+cf create-org spacestest
 for i in {1..25} 
 do
 	formatted_i=$(apm_format $i)
