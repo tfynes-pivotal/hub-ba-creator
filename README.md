@@ -45,6 +45,6 @@ generates "spaces_with_pbas.csv"
 
 ### Ensure a CSV file existing in current directory with all "ad-xxxxxxxx" business application ids listed in column 1 with corresponding business application name in column 2 (header row values; ad_Id,ad_Name)
 
-### Create Business Applications
+### Create Business Applications.
 python3 ./2.createBaList.py ./spaces_with_pbas.csv
 
